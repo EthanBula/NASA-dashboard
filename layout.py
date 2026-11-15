@@ -472,11 +472,11 @@ def build_literature_section(
                             ),
                         ]
                     ),
-                    # Row 1: Search & Filters (Col 1, Width 4) + Scientific Detail Card (Col 2, Width 8)
+                    # Row 1: Search & Filters (Col 1, Width 20%) + Scientific Detail Card (Col 2, Width 80%)
                     dbc.Row(
                         [
-                            # Top-Left: Filters (Yellow Border)
-                            dbc.Col(
+                            # Top-Left: Filters (Yellow Border, 20% width)
+                            html.Div(
                                 html.Div(
                                     [
                                         html.H5(
@@ -549,12 +549,10 @@ def build_literature_section(
                                     ],
                                     className="hud-card hud-card-yellow hud-filters-card h-100 mb-0",
                                 ),
-                                xs=12,
-                                lg=4,
-                                className="mb-3",
+                                className="col-12 hud-col-20 mb-3",
                             ),
-                            # Top-Right: Scientific Detail Card (Green Border)
-                            dbc.Col(
+                            # Top-Right: Scientific Detail Card (Green Border, 80% width)
+                            html.Div(
                                 html.Div(
                                     id="container-investigation-detail",
                                     children=[
@@ -580,9 +578,7 @@ def build_literature_section(
                                     ],
                                     className="hud-card hud-card-green h-100 mb-0",
                                 ),
-                                xs=12,
-                                lg=8,
-                                className="mb-3",
+                                className="col-12 hud-col-80 mb-3",
                             ),
                         ],
                         className="mb-3 hud-literature-row-top",
@@ -590,7 +586,7 @@ def build_literature_section(
                     # Row 2: Flight Investigations List (Red Border) + Dedicated Chart (Yellow Border)
                     dbc.Row(
                         [
-                            # Bottom-Left: Flight Investigations List (Dynamic Width: col-lg-6 <-> col-lg-3)
+                            # Bottom-Left: Flight Investigations List (Dynamic Width: 50% <-> 20%)
                             html.Div(
                                 html.Div(
                                     [
@@ -627,9 +623,9 @@ def build_literature_section(
                                     className="hud-card hud-card-red h-100 mb-0",
                                 ),
                                 id="col-investigations-list",
-                                className="col-12 col-lg-6 mb-3 layout-col-transition",
+                                className="col-12 hud-col-50 mb-3 layout-col-transition",
                             ),
-                            # Bottom-Right: Dedicated Chart (Dynamic Width: col-lg-6 <-> col-lg-9)
+                            # Bottom-Right: Dedicated Chart (Dynamic Width: 50% <-> 80%)
                             html.Div(
                                 html.Div(
                                     [
@@ -659,7 +655,7 @@ def build_literature_section(
                                     className="hud-card hud-card-yellow h-100 mb-0",
                                 ),
                                 id="col-investigations-chart",
-                                className="col-12 col-lg-6 mb-3 layout-col-transition",
+                                className="col-12 hud-col-50 mb-3 layout-col-transition",
                             ),
                         ],
                         className="hud-literature-row-bottom",

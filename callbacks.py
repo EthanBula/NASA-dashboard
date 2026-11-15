@@ -645,11 +645,13 @@ def register_callbacks(app: Any) -> None:
         card_elements = []
         for inv in filtered_invs:
             acc = inv["accession"]
+            title_text = inv.get("title", "Untitled")
             card_elements.append(
                 html.Div(
                     id={"type": "investigation-card", "index": acc},
                     n_clicks=0,
                     className="investigation-card-item",
+                    title=f"{acc}: {title_text}",
                     children=[
                         html.Div(
                             [
@@ -658,10 +660,10 @@ def register_callbacks(app: Any) -> None:
                                     inv.get("category", ""), className="badge-category"
                                 ),
                             ],
-                            className="mb-1 d-flex align-items-center",
+                            className="mb-1 d-flex align-items-center investigation-card-header",
                         ),
                         html.Div(
-                            inv.get("title", "Untitled"),
+                            title_text,
                             className="text-white fw-bold small mb-1 investigation-title",
                         ),
                         html.Div(
@@ -792,14 +794,14 @@ def register_callbacks(app: Any) -> None:
     ) -> tuple[str, str, str, str, str]:
         mode = (layout_state or {}).get("mode", "expanded")
         if mode == "compact":
-            col_list_class = "col-12 col-lg-3 mb-3 layout-col-transition"
-            col_chart_class = "col-12 col-lg-9 mb-3 layout-col-transition"
+            col_list_class = "col-12 hud-col-20 mb-3 layout-col-transition"
+            col_chart_class = "col-12 hud-col-80 mb-3 layout-col-transition"
             list_scroll_class = "investigation-list-scroll investigation-list-compact"
             btn_text = "Expand Catalog"
             btn_icon = "⇱"
         else:
-            col_list_class = "col-12 col-lg-6 mb-3 layout-col-transition"
-            col_chart_class = "col-12 col-lg-6 mb-3 layout-col-transition"
+            col_list_class = "col-12 hud-col-50 mb-3 layout-col-transition"
+            col_chart_class = "col-12 hud-col-50 mb-3 layout-col-transition"
             list_scroll_class = "investigation-list-scroll"
             btn_text = "Focus Chart"
             btn_icon = "⇲"

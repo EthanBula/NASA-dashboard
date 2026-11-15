@@ -669,6 +669,27 @@ body {
 /* ------------------------------------------------------------------------------
    7. Literature Explorer (Section 2 Scrollable Container & Cards)
    ------------------------------------------------------------------------------ */
+/* Literature Explorer 20% / 80% Unified Grid System */
+@media (min-width: 992px) {
+  .hud-col-20 {
+    flex: 0 0 20% !important;
+    max-width: 20% !important;
+    width: 20% !important;
+  }
+
+  .hud-col-80 {
+    flex: 0 0 80% !important;
+    max-width: 80% !important;
+    width: 80% !important;
+  }
+
+  .hud-col-50 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+  }
+}
+
 .layout-col-transition {
   transition: flex 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -706,30 +727,45 @@ body {
   scrollbar-color: var(--color-red-primary) rgba(15, 23, 42, 0.6);
 }
 
-/* Compact Mode for Compressed Flight Investigations List */
+/* Compact Mode for Compressed Flight Investigations List (Only PSI Identifier) */
 .investigation-list-compact .investigation-card-item {
   padding: 8px 10px !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 6px !important;
+  min-height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.investigation-list-compact .investigation-card-item:hover {
+  border-color: var(--color-yellow-accent) !important;
+  box-shadow: 0 0 10px rgba(251, 220, 8, 0.35) !important;
+}
+
+.investigation-list-compact .investigation-card-item .investigation-title,
+.investigation-list-compact .investigation-card-item .investigation-meta,
+.investigation-list-compact .investigation-card-item .badge-category,
+.investigation-list-compact .investigation-card-item .badge-platform {
+  display: none !important;
+}
+
+.investigation-list-compact .investigation-card-item .investigation-card-header {
+  margin-bottom: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 
 .investigation-list-compact .investigation-card-item .badge-accession {
-  font-size: 0.7rem !important;
-  padding: 1px 5px !important;
-}
-
-.investigation-list-compact .investigation-card-item .badge-category {
-  font-size: 0.65rem !important;
-  padding: 1px 4px !important;
-}
-
-.investigation-list-compact .investigation-card-item .investigation-title {
-  font-size: 0.8rem !important;
-  line-height: 1.25 !important;
-  margin-bottom: 4px !important;
-}
-
-.investigation-list-compact .investigation-card-item .investigation-meta {
-  font-size: 0.72rem !important;
+  font-size: 0.85rem !important;
+  font-family: var(--font-family-mono) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  padding: 4px 10px !important;
+  width: 100% !important;
+  text-align: center !important;
+  display: block !important;
 }
 
 .investigation-list-scroll::-webkit-scrollbar {
