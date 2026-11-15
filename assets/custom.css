@@ -393,6 +393,32 @@ body {
   z-index: 1;
 }
 
+/* Literature Explorer Filters High Stacking Context (Ensures dropdowns float OVER Row 2 cards) */
+.hud-literature-row-top {
+  position: relative !important;
+  z-index: 50 !important;
+}
+
+.hud-literature-row-bottom {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.hud-filters-card {
+  position: relative !important;
+  z-index: 500 !important;
+}
+
+#dropdown-category {
+  position: relative;
+  z-index: 40;
+}
+
+#dropdown-platform {
+  position: relative;
+  z-index: 20;
+}
+
 .dash-dropdown-content,
 .dash-dropdown-wrapper > div,
 [data-radix-popper-content-wrapper] {

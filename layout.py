@@ -492,78 +492,62 @@ def build_literature_section(
                                             type="text",
                                             className="mb-3",
                                         ),
-                                        dbc.Row(
-                                            [
-                                                dbc.Col(
-                                                    [
-                                                        html.Label(
-                                                            "Combustion Category", className="hud-label"
-                                                        ),
-                                                        dcc.Dropdown(
-                                                            id="dropdown-category",
-                                                            options=[
-                                                                {
-                                                                    "label": "All Categories",
-                                                                    "value": "ALL",
-                                                                },
-                                                                {
-                                                                    "label": "Spacecraft Fire Safety",
-                                                                    "value": "Spacecraft Fire Safety",
-                                                                },
-                                                                {
-                                                                    "label": "Droplet Combustion",
-                                                                    "value": "Droplet Combustion",
-                                                                },
-                                                                {
-                                                                    "label": "Gaseous Combustion",
-                                                                    "value": "Gaseous Combustion",
-                                                                },
-                                                            ],
-                                                            value="ALL",
-                                                            clearable=False,
-                                                            className="mb-2",
-                                                        ),
-                                                    ],
-                                                    xs=12,
-                                                    sm=6,
-                                                ),
-                                                dbc.Col(
-                                                    [
-                                                        html.Label(
-                                                            "Flight Platform", className="hud-label"
-                                                        ),
-                                                        dcc.Dropdown(
-                                                            id="dropdown-platform",
-                                                            options=[
-                                                                {
-                                                                    "label": "All Platforms",
-                                                                    "value": "ALL",
-                                                                },
-                                                                {
-                                                                    "label": "International Space Station (ISS)",
-                                                                    "value": "International Space Station (ISS)",
-                                                                },
-                                                                {
-                                                                    "label": "Cygnus Spacecraft",
-                                                                    "value": "Cygnus Spacecraft",
-                                                                },
-                                                                {
-                                                                    "label": "Not Applicable",
-                                                                    "value": "Not Applicable",
-                                                                },
-                                                            ],
-                                                            value="ALL",
-                                                            clearable=False,
-                                                            className="mb-2",
-                                                        ),
-                                                    ],
-                                                    xs=12,
-                                                    sm=6,
-                                                ),
-                                            ]
+                                        html.Label(
+                                            "Combustion Category", className="hud-label"
+                                        ),
+                                        dcc.Dropdown(
+                                            id="dropdown-category",
+                                            options=[
+                                                {
+                                                    "label": "All Categories",
+                                                    "value": "ALL",
+                                                },
+                                                {
+                                                    "label": "Spacecraft Fire Safety",
+                                                    "value": "Spacecraft Fire Safety",
+                                                },
+                                                {
+                                                    "label": "Droplet Combustion",
+                                                    "value": "Droplet Combustion",
+                                                },
+                                                {
+                                                    "label": "Gaseous Combustion",
+                                                    "value": "Gaseous Combustion",
+                                                },
+                                            ],
+                                            value="ALL",
+                                            clearable=False,
+                                            className="mb-3",
+                                        ),
+                                        html.Label(
+                                            "Flight Platform", className="hud-label"
+                                        ),
+                                        dcc.Dropdown(
+                                            id="dropdown-platform",
+                                            options=[
+                                                {
+                                                    "label": "All Platforms",
+                                                    "value": "ALL",
+                                                },
+                                                {
+                                                    "label": "International Space Station (ISS)",
+                                                    "value": "International Space Station (ISS)",
+                                                },
+                                                {
+                                                    "label": "Cygnus Spacecraft",
+                                                    "value": "Cygnus Spacecraft",
+                                                },
+                                                {
+                                                    "label": "Not Applicable",
+                                                    "value": "Not Applicable",
+                                                },
+                                            ],
+                                            value="ALL",
+                                            clearable=False,
+                                            className="mb-2",
                                         ),
                                     ],
-                                    className="hud-card hud-card-yellow h-100 mb-0",
+                                    className="hud-card hud-card-yellow hud-filters-card h-100 mb-0",
                                 ),
                                 xs=12,
                                 lg=4,
@@ -601,7 +585,7 @@ def build_literature_section(
                                 className="mb-3",
                             ),
                         ],
-                        className="mb-3",
+                        className="mb-3 hud-literature-row-top",
                     ),
                     # Row 2: Flight Investigations List (Red Border) + Dedicated Chart (Yellow Border)
                     dbc.Row(
@@ -677,7 +661,8 @@ def build_literature_section(
                                 id="col-investigations-chart",
                                 className="col-12 col-lg-6 mb-3 layout-col-transition",
                             ),
-                        ]
+                        ],
+                        className="hud-literature-row-bottom",
                     ),
                 ],
                 fluid=True,
