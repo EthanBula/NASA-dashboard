@@ -3,8 +3,9 @@ title: NASA PSI Microgravity Flammability & Fire Safety Dashboard
 emoji: 🚀
 colorFrom: blue
 colorTo: cyan
-sdk: docker
-app_port: 7860
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
 pinned: false
 license: mit
 ---
