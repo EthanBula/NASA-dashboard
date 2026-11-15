@@ -466,7 +466,7 @@ def build_investigation_detail_component(inv: dict[str, Any]) -> html.Div:
                             ),
                         ],
                         xs=12,
-                        md=6,
+                        md=4,
                         className="mb-1",
                     ),
                     dbc.Col(
@@ -478,7 +478,7 @@ def build_investigation_detail_component(inv: dict[str, Any]) -> html.Div:
                             ),
                         ],
                         xs=12,
-                        md=6,
+                        md=4,
                         className="mb-1",
                     ),
                     dbc.Col(
@@ -492,9 +492,11 @@ def build_investigation_detail_component(inv: dict[str, Any]) -> html.Div:
                             ),
                         ],
                         xs=12,
-                        className="mb-3",
+                        md=4,
+                        className="mb-1",
                     ),
-                ]
+                ],
+                className="mb-2",
             ),
             # Scientific Tabs
             dbc.Tabs(
@@ -660,7 +662,7 @@ def register_callbacks(app: Any) -> None:
                         ),
                         html.Div(
                             inv.get("title", "Untitled"),
-                            className="text-white fw-bold small mb-1",
+                            className="text-white fw-bold small mb-1 investigation-title",
                         ),
                         html.Div(
                             [
@@ -673,7 +675,7 @@ def register_callbacks(app: Any) -> None:
                                     className="badge-platform ms-auto",
                                 ),
                             ],
-                            className="d-flex align-items-center text-muted small",
+                            className="d-flex align-items-center text-muted small investigation-meta",
                         ),
                     ],
                 )
@@ -730,6 +732,92 @@ def register_callbacks(app: Any) -> None:
         }
 
         return detail_component, dedicated_chart, selected_store_data
+
+    # --------------------------------------------------------------------------
+    # Action 6.4b: Section 2 Literature Responsive Dynamic Layout Toggle
+    # --------------------------------------------------------------------------
+    @app.callback(
+        Output("store-literature-layout", "data"),
+        Input({"type": "investigation-card", "index": ALL}, "n_clicks"),
+        Input("btn-toggle-list-size", "n_clicks"),
+        Input("input-search", "value"),
+        Input("dropdown-category", "value"),
+        Input("dropdown-platform", "value"),
+        State("store-literature-layout", "data"),
+        prevent_initial_call=True,
+    )
+    def handle_literature_layout_state(
+        card_clicks: list[int | None],
+        _toggle_clicks: int | None,
+        _search_val: str | None,
+        _cat_val: str | None,
+        _plat_val: str | None,
+        current_layout: dict[str, Any] | None,
+    ) -> dict[str, str]:
+        triggered = ctx.triggered_id
+        if not triggered:
+            return current_layout or {"mode": "expanded"}
+
+        curr_mode = (current_layout or {}).get("mode", "expanded")
+
+        # 1. Clicking an investigation card -> compress list to focus on graph
+        if (
+            isinstance(triggered, dict)
+            and triggered.get("type") == "investigation-card"
+            and any(c for c in card_clicks if c)
+        ):
+            return {"mode": "compact"}
+
+        # 2. Clicking the toggle button -> toggle mode
+        if triggered == "btn-toggle-list-size":
+            new_mode = "expanded" if curr_mode == "compact" else "compact"
+            return {"mode": new_mode}
+
+        # 3. Interacting with search/filters -> expand list so user can browse
+        if triggered in {"input-search", "dropdown-category", "dropdown-platform"}:
+            return {"mode": "expanded"}
+
+        return current_layout or {"mode": "expanded"}
+
+    @app.callback(
+        Output("col-investigations-list", "className"),
+        Output("col-investigations-chart", "className"),
+        Output("container-investigation-list", "className"),
+        Output("text-toggle-list-size", "children"),
+        Output("icon-toggle-list-size", "children"),
+        Input("store-literature-layout", "data"),
+    )
+    def update_literature_layout_dom(
+        layout_state: dict[str, Any] | None,
+    ) -> tuple[str, str, str, str, str]:
+        mode = (layout_state or {}).get("mode", "expanded")
+        if mode == "compact":
+            col_list_class = "col-12 col-lg-3 mb-3 layout-col-transition"
+            col_chart_class = "col-12 col-lg-9 mb-3 layout-col-transition"
+            list_scroll_class = "investigation-list-scroll investigation-list-compact"
+            btn_text = "Expand Catalog"
+            btn_icon = "⇱"
+        else:
+            col_list_class = "col-12 col-lg-6 mb-3 layout-col-transition"
+            col_chart_class = "col-12 col-lg-6 mb-3 layout-col-transition"
+            list_scroll_class = "investigation-list-scroll"
+            btn_text = "Focus Chart"
+            btn_icon = "⇲"
+
+        return col_list_class, col_chart_class, list_scroll_class, btn_text, btn_icon
+
+    app.clientside_callback(
+        """
+        function(data) {
+            setTimeout(function() {
+                window.dispatchEvent(new Event('resize'));
+            }, 320);
+            return window.dash_clientside.no_update;
+        }
+        """,
+        Output("dummy-resize-output", "children"),
+        Input("store-literature-layout", "data"),
+    )
 
     # --------------------------------------------------------------------------
     # Action 6.5: Section 3 AI Copilot Synchronous Chat Execution

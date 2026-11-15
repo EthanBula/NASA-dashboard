@@ -472,9 +472,10 @@ def build_literature_section(
                             ),
                         ]
                     ),
+                    # Row 1: Search & Filters (Col 1, Width 4) + Scientific Detail Card (Col 2, Width 8)
                     dbc.Row(
                         [
-                            # Column 1: Filters (Width 3)
+                            # Top-Left: Filters (Yellow Border)
                             dbc.Col(
                                 html.Div(
                                     [
@@ -491,68 +492,122 @@ def build_literature_section(
                                             type="text",
                                             className="mb-3",
                                         ),
-                                        html.Label(
-                                            "Combustion Category", className="hud-label"
-                                        ),
-                                        dcc.Dropdown(
-                                            id="dropdown-category",
-                                            options=[
-                                                {
-                                                    "label": "All Categories",
-                                                    "value": "ALL",
-                                                },
-                                                {
-                                                    "label": "Spacecraft Fire Safety",
-                                                    "value": "Spacecraft Fire Safety",
-                                                },
-                                                {
-                                                    "label": "Droplet Combustion",
-                                                    "value": "Droplet Combustion",
-                                                },
-                                                {
-                                                    "label": "Gaseous Combustion",
-                                                    "value": "Gaseous Combustion",
-                                                },
-                                            ],
-                                            value="ALL",
-                                            clearable=False,
-                                            className="mb-3",
-                                        ),
-                                        html.Label(
-                                            "Flight Platform", className="hud-label"
-                                        ),
-                                        dcc.Dropdown(
-                                            id="dropdown-platform",
-                                            options=[
-                                                {
-                                                    "label": "All Platforms",
-                                                    "value": "ALL",
-                                                },
-                                                {
-                                                    "label": "International Space Station (ISS)",
-                                                    "value": "International Space Station (ISS)",
-                                                },
-                                                {
-                                                    "label": "Cygnus Spacecraft",
-                                                    "value": "Cygnus Spacecraft",
-                                                },
-                                                {
-                                                    "label": "Not Applicable",
-                                                    "value": "Not Applicable",
-                                                },
-                                            ],
-                                            value="ALL",
-                                            clearable=False,
-                                            className="mb-2",
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    [
+                                                        html.Label(
+                                                            "Combustion Category", className="hud-label"
+                                                        ),
+                                                        dcc.Dropdown(
+                                                            id="dropdown-category",
+                                                            options=[
+                                                                {
+                                                                    "label": "All Categories",
+                                                                    "value": "ALL",
+                                                                },
+                                                                {
+                                                                    "label": "Spacecraft Fire Safety",
+                                                                    "value": "Spacecraft Fire Safety",
+                                                                },
+                                                                {
+                                                                    "label": "Droplet Combustion",
+                                                                    "value": "Droplet Combustion",
+                                                                },
+                                                                {
+                                                                    "label": "Gaseous Combustion",
+                                                                    "value": "Gaseous Combustion",
+                                                                },
+                                                            ],
+                                                            value="ALL",
+                                                            clearable=False,
+                                                            className="mb-2",
+                                                        ),
+                                                    ],
+                                                    xs=12,
+                                                    sm=6,
+                                                ),
+                                                dbc.Col(
+                                                    [
+                                                        html.Label(
+                                                            "Flight Platform", className="hud-label"
+                                                        ),
+                                                        dcc.Dropdown(
+                                                            id="dropdown-platform",
+                                                            options=[
+                                                                {
+                                                                    "label": "All Platforms",
+                                                                    "value": "ALL",
+                                                                },
+                                                                {
+                                                                    "label": "International Space Station (ISS)",
+                                                                    "value": "International Space Station (ISS)",
+                                                                },
+                                                                {
+                                                                    "label": "Cygnus Spacecraft",
+                                                                    "value": "Cygnus Spacecraft",
+                                                                },
+                                                                {
+                                                                    "label": "Not Applicable",
+                                                                    "value": "Not Applicable",
+                                                                },
+                                                            ],
+                                                            value="ALL",
+                                                            clearable=False,
+                                                            className="mb-2",
+                                                        ),
+                                                    ],
+                                                    xs=12,
+                                                    sm=6,
+                                                ),
+                                            ]
                                         ),
                                     ],
-                                    className="hud-card hud-card-yellow",
+                                    className="hud-card hud-card-yellow h-100 mb-0",
                                 ),
                                 xs=12,
-                                lg=3,
+                                lg=4,
+                                className="mb-3",
                             ),
-                            # Column 2: Master Scrollable List (Width 4)
+                            # Top-Right: Scientific Detail Card (Green Border)
                             dbc.Col(
+                                html.Div(
+                                    id="container-investigation-detail",
+                                    children=[
+                                        html.Div(
+                                            [
+                                                html.Span(
+                                                    "🔬",
+                                                    style={"fontSize": "2rem"},
+                                                    className="d-block mb-2",
+                                                ),
+                                                html.H6(
+                                                    "Select an investigation from the list below",
+                                                    className="text-white mb-2",
+                                                ),
+                                                html.P(
+                                                    "Explore its flight research objectives, scientific hypothesis, experimental approach, "
+                                                    "earth/space fire safety impacts, peer-reviewed DOIs, and dedicated experimental data.",
+                                                    className="text-muted small mb-0",
+                                                ),
+                                            ],
+                                            className="empty-state-prompt text-center py-4",
+                                        )
+                                    ],
+                                    className="hud-card hud-card-green h-100 mb-0",
+                                ),
+                                xs=12,
+                                lg=8,
+                                className="mb-3",
+                            ),
+                        ],
+                        className="mb-3",
+                    ),
+                    # Row 2: Flight Investigations List (Red Border) + Dedicated Chart (Yellow Border)
+                    dbc.Row(
+                        [
+                            # Bottom-Left: Flight Investigations List (Dynamic Width: col-lg-6 <-> col-lg-3)
+                            html.Div(
                                 html.Div(
                                     [
                                         html.Div(
@@ -564,7 +619,18 @@ def build_literature_section(
                                                 html.Span(
                                                     f"{total_count} Available",
                                                     id="badge-investigation-count",
-                                                    className="badge-accession ms-auto",
+                                                    className="badge-accession ms-2",
+                                                ),
+                                                dbc.Button(
+                                                    [
+                                                        html.Span("⇲", id="icon-toggle-list-size", className="me-1"),
+                                                        html.Span("Focus Chart", id="text-toggle-list-size"),
+                                                    ],
+                                                    id="btn-toggle-list-size",
+                                                    size="sm",
+                                                    color="outline-warning",
+                                                    className="btn-hud-toggle-sm ms-auto",
+                                                    title="Toggle list width (Compress / Expand)",
                                                 ),
                                             ],
                                             className="d-flex align-items-center mb-3",
@@ -574,42 +640,28 @@ def build_literature_section(
                                             className="investigation-list-scroll",
                                         ),
                                     ],
-                                    className="hud-card hud-card-red",
+                                    className="hud-card hud-card-red h-100 mb-0",
                                 ),
-                                xs=12,
-                                lg=4,
+                                id="col-investigations-list",
+                                className="col-12 col-lg-6 mb-3 layout-col-transition",
                             ),
-                            # Column 3: Detail Panel & Dedicated Chart (Width 5)
-                            dbc.Col(
-                                [
-                                    # Scientific Detail Card
-                                    html.Div(
-                                        id="container-investigation-detail",
-                                        children=[
-                                            html.Div(
-                                                [
-                                                    html.Span(
-                                                        "🔬",
-                                                        style={"fontSize": "2rem"},
-                                                        className="d-block mb-2",
-                                                    ),
-                                                    html.H6(
-                                                        "Select an investigation from the list",
-                                                        className="text-white mb-2",
-                                                    ),
-                                                    html.P(
-                                                        "View its flight research objectives, hypothesis, approach, "
-                                                        "earth/space impacts, peer-reviewed DOIs, and dedicated experimental data.",
-                                                        className="text-muted small mb-0",
-                                                    ),
-                                                ],
-                                                className="empty-state-prompt",
-                                            )
-                                        ],
-                                        className="hud-card mb-3 hud-card-green",
-                                    ),
-                                    # Dedicated Investigation Chart Container
-                                    html.Div(
+                            # Bottom-Right: Dedicated Chart (Dynamic Width: col-lg-6 <-> col-lg-9)
+                            html.Div(
+                                html.Div(
+                                    [
+                                        html.Div(
+                                            [
+                                                html.H5(
+                                                    "Dedicated Flight Experiment Telemetry",
+                                                    className="hud-label mb-0",
+                                                ),
+                                                html.Span(
+                                                    "Interactive Data",
+                                                    className="badge-platform ms-auto",
+                                                ),
+                                            ],
+                                            className="d-flex align-items-center mb-3",
+                                        ),
                                         dcc.Graph(
                                             id="graph-investigation-detail",
                                             figure=initial_chart,
@@ -617,13 +669,13 @@ def build_literature_section(
                                                 "responsive": True,
                                                 "displayModeBar": False,
                                             },
-                                            style={"height": "380px"},
+                                            style={"height": "430px"},
                                         ),
-                                        className="hud-card hud-card-yellow",
-                                    ),
-                                ],
-                                xs=12,
-                                lg=5,
+                                    ],
+                                    className="hud-card hud-card-yellow h-100 mb-0",
+                                ),
+                                id="col-investigations-chart",
+                                className="col-12 col-lg-6 mb-3 layout-col-transition",
                             ),
                         ]
                     ),
@@ -930,6 +982,8 @@ def create_layout() -> html.Div:
             # Application State Stores
             dcc.Store(id="store-scenario", data={}),
             dcc.Store(id="store-selected-investigation", data={}),
+            dcc.Store(id="store-literature-layout", data={"mode": "expanded"}),
+            html.Div(id="dummy-resize-output", style={"display": "none"}),
             # Sticky Navbar
             build_navbar(),
             # Section 1: Environmental Dashboard

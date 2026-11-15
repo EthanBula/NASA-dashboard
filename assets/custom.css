@@ -643,14 +643,67 @@ body {
 /* ------------------------------------------------------------------------------
    7. Literature Explorer (Section 2 Scrollable Container & Cards)
    ------------------------------------------------------------------------------ */
+.layout-col-transition {
+  transition: flex 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hud-toggle-sm {
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 10px !important;
+  border-radius: var(--radius-sm) !important;
+  text-transform: uppercase;
+  border: 1px solid rgba(251, 220, 8, 0.5) !important;
+  color: var(--color-yellow-accent) !important;
+  background-color: rgba(251, 220, 8, 0.08) !important;
+  transition: all 0.2s ease;
+}
+
+.btn-hud-toggle-sm:hover {
+  background-color: var(--color-yellow-accent) !important;
+  color: #05070d !important;
+  border-color: var(--color-yellow-accent) !important;
+  box-shadow: 0 0 10px rgba(251, 220, 8, 0.45) !important;
+}
+
 .investigation-list-scroll {
-  max-height: 760px;
-  min-height: 680px;
+  max-height: 480px;
+  min-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--color-red-primary) rgba(15, 23, 42, 0.6);
+}
+
+/* Compact Mode for Compressed Flight Investigations List */
+.investigation-list-compact .investigation-card-item {
+  padding: 8px 10px !important;
+  margin-bottom: 8px !important;
+}
+
+.investigation-list-compact .investigation-card-item .badge-accession {
+  font-size: 0.7rem !important;
+  padding: 1px 5px !important;
+}
+
+.investigation-list-compact .investigation-card-item .badge-category {
+  font-size: 0.65rem !important;
+  padding: 1px 4px !important;
+}
+
+.investigation-list-compact .investigation-card-item .investigation-title {
+  font-size: 0.8rem !important;
+  line-height: 1.25 !important;
+  margin-bottom: 4px !important;
+}
+
+.investigation-list-compact .investigation-card-item .investigation-meta {
+  font-size: 0.72rem !important;
 }
 
 .investigation-list-scroll::-webkit-scrollbar {
@@ -728,17 +781,18 @@ body {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid var(--border-green);
   border-radius: var(--radius-sm);
-  padding: 16px;
-  font-size: 0.92rem;
-  line-height: 1.6;
+  padding: 14px;
+  font-size: 0.90rem;
+  line-height: 1.55;
   color: #e2e8f0;
-  max-height: 260px;
+  max-height: 170px;
+  min-height: 120px;
   overflow-y: auto;
 }
 
 /* Publications Table */
 .doi-table-container {
-  max-height: 220px;
+  max-height: 170px;
   overflow-y: auto;
   border: 1px solid var(--border-yellow);
   border-radius: var(--radius-sm);

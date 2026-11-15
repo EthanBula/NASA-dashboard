@@ -72,6 +72,9 @@ def test_layout_rendering_and_component_ids() -> None:
         "container-investigation-list",
         "container-investigation-detail",
         "graph-investigation-detail",
+        "col-investigations-list",
+        "col-investigations-chart",
+        "btn-toggle-list-size",
         # Section 3 AI Copilot
         "pills-container",
         "chat-feed-container",
@@ -83,6 +86,7 @@ def test_layout_rendering_and_component_ids() -> None:
         # Stores
         "store-scenario",
         "store-selected-investigation",
+        "store-literature-layout",
     ]
 
     missing_ids = [cid for cid in required_ids if cid not in all_ids]
