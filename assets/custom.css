@@ -1,0 +1,927 @@
+/* ==============================================================================
+   NASA PSI Microgravity Flammability & Fire Safety Dashboard
+   Aerospace Glassmorphic Dark HUD Design System & Scrollytelling Stylesheet
+   Authors: Cesia Burgos (Chief Executive Officer, CEO) & Ethan Bula (Chief Operating Officer, COO)
+   Standards: WCAG 2.1 AAA Contrast, Design-System 3-Tier Tokens, Mobile First
+   ============================================================================== */
+
+/* ------------------------------------------------------------------------------
+   1. Design System Tokens (Primitive -> Semantic -> Component)
+   ------------------------------------------------------------------------------ */
+:root {
+  /* Primitive Color Palette (NASA Red #d91119, Green #068839, Yellow #fbdc08) */
+  --color-space-950: #05070d;
+  --color-space-900: #0b0f19;
+  --color-space-850: #0f172a;
+  --color-space-800: #131826;
+  
+  --color-red-primary: #d91119;
+  --color-red-hover: #b50e15;
+  --color-red-glow: rgba(217, 17, 25, 0.45);
+  
+  --color-green-telemetry: #068839;
+  --color-green-bright: #0cb64d;
+  --color-green-glow: rgba(6, 136, 57, 0.40);
+  
+  --color-yellow-accent: #fbdc08;
+  --color-yellow-hover: #e0c406;
+  --color-yellow-glow: rgba(251, 220, 8, 0.35);
+
+  --color-slate-100: #f8fafc;
+  --color-slate-400: #94a3b8;
+  --color-slate-600: #475569;
+
+  /* Semantic Variables */
+  --bg-dark: var(--color-space-900);
+  --bg-deep: var(--color-space-950);
+  --card-bg: rgba(19, 24, 38, 0.88);
+  --bg-card: var(--card-bg);
+
+  --border-neutral: rgba(148, 163, 184, 0.22);
+  --border-red: rgba(217, 17, 25, 0.45);
+  --border-red-bright: rgba(217, 17, 25, 0.85);
+  --border-yellow: rgba(251, 220, 8, 0.45);
+  --border-yellow-bright: rgba(251, 220, 8, 0.85);
+  --border-green: rgba(12, 182, 77, 0.45);
+  --border-green-bright: rgba(12, 182, 77, 0.85);
+
+  --border-glow: 0 0 16px rgba(217, 17, 25, 0.40);
+  --border-glow-red: 0 0 16px rgba(217, 17, 25, 0.40);
+  --border-glow-yellow: 0 0 16px rgba(251, 220, 8, 0.40);
+  --border-glow-green: 0 0 16px rgba(12, 182, 77, 0.45);
+
+  --accent-primary: var(--color-red-primary);
+  --accent-primary-hover: var(--color-red-hover);
+  --accent-yellow: var(--color-yellow-accent);
+  --accent-green: var(--color-green-bright);
+
+  /* Interoperability Aliases */
+  --accent-cyan: var(--color-red-primary);
+  --accent-cyan-hover: var(--color-red-hover);
+  --accent-orange: var(--color-yellow-accent);
+  --accent-red: var(--color-red-primary);
+  --border-cyan: var(--border-red);
+  --border-cyan-bright: var(--border-red-bright);
+
+  --text-main: var(--color-slate-100);
+  --text-muted: var(--color-slate-400);
+
+  /* Component Dimensions & Typography */
+  --navbar-height: 64px;
+  --radius-card: 12px;
+  --radius-sm: 6px;
+  --radius-pill: 9999px;
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+}
+
+/* ------------------------------------------------------------------------------
+   2. Base Document & Smooth Scrollytelling Setup
+   ------------------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------------
+   3. Sticky Top Navbar & Section Navigation
+   ------------------------------------------------------------------------------ */
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  height: var(--navbar-height);
+  background: rgba(11, 15, 25, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-cyan);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-main) !important;
+  text-transform: uppercase;
+}
+
+.navbar-brand-badge {
+  background: rgba(217, 17, 25, 0.25);
+  color: #ffffff;
+  border: 1px solid var(--color-red-primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 8px;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 8px rgba(217, 17, 25, 0.3);
+}
+
+.nav-link-hud {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 16px !important;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link-hud:hover,
+.nav-link-hud:focus {
+  color: var(--color-yellow-accent) !important;
+  text-shadow: 0 0 8px rgba(251, 220, 8, 0.6);
+}
+
+.nav-link-hud::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-red-primary);
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px var(--color-red-primary);
+}
+
+.nav-link-hud:hover::after {
+  width: 70%;
+}
+
+/* ------------------------------------------------------------------------------
+   4. Atmospheric Wallpaper Section Backgrounds (Scrollytelling Flow)
+   ------------------------------------------------------------------------------ */
+.section-dashboard {
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.86), rgba(11, 15, 25, 0.94)),
+              url('/assets/wallpapers/wallpaper1.png') center/cover no-repeat fixed;
+  min-height: 100vh;
+  padding: 48px 0;
+  position: relative;
+  border-bottom: 1px solid rgba(217, 17, 25, 0.2);
+}
+
+.section-literature {
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.88), rgba(11, 15, 25, 0.95)),
+              url('/assets/wallpapers/wallpaper2.png') center/cover no-repeat fixed;
+  min-height: 100vh;
+  padding: 48px 0;
+  position: relative;
+  border-bottom: 1px solid rgba(217, 17, 25, 0.2);
+}
+
+.section-agent {
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.84), rgba(11, 15, 25, 0.92)),
+              url('/assets/wallpapers/wallpaper3.png') center/cover no-repeat fixed;
+  min-height: 90vh;
+  padding: 48px 0;
+  position: relative;
+  border-bottom: 1px solid rgba(217, 17, 25, 0.2);
+}
+
+.section-info {
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.90), rgba(11, 15, 25, 0.98)),
+              url('/assets/wallpapers/wallpaper4.png') center/cover no-repeat fixed;
+  min-height: 60vh;
+  padding: 48px 0;
+  position: relative;
+}
+
+/* Section Header Typography */
+.section-heading-eyebrow {
+  color: var(--color-yellow-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.section-heading-title {
+  color: var(--text-main);
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.section-heading-subtitle {
+  color: var(--text-muted);
+  font-size: 1.0rem;
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+/* ------------------------------------------------------------------------------
+   5. Glassmorphic HUD Cards & Controls
+   ------------------------------------------------------------------------------ */
+.hud-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neutral);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.42);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.hud-card:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* Multi-Color Aerospace Card Border Variants */
+.hud-card-red {
+  border: 1px solid var(--border-red) !important;
+}
+
+.hud-card-red:hover {
+  border-color: var(--border-red-bright) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.42), var(--border-glow-red) !important;
+}
+
+.hud-card-yellow {
+  border: 1px solid var(--border-yellow) !important;
+}
+
+.hud-card-yellow:hover {
+  border-color: var(--border-yellow-bright) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.42), var(--border-glow-yellow) !important;
+}
+
+.hud-card-green {
+  border: 1px solid var(--border-green) !important;
+}
+
+.hud-card-green:hover {
+  border-color: var(--border-green-bright) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.42), var(--border-glow-green) !important;
+}
+
+.hud-card-compact {
+  padding: 16px;
+}
+
+/* Control Labels and Inputs */
+.hud-label {
+  color: var(--color-yellow-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.hud-card .form-control,
+.hud-card .form-select,
+.Select-control {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid var(--border-cyan) !important;
+  color: var(--text-main) !important;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+.hud-card .form-control:focus,
+.hud-card .form-select:focus,
+.is-focused:not(.is-open) > .Select-control {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: var(--border-glow) !important;
+}
+
+/* Modern Dash 4.x / Radix Dropdown Dark Aerospace HUD Theme */
+.dash-dropdown {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid var(--border-cyan) !important;
+  color: var(--text-main) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-dropdown:hover,
+.dash-dropdown[data-state="open"] {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35) !important;
+}
+
+.dash-dropdown-value,
+.dash-dropdown-value-item {
+  color: var(--text-main) !important;
+}
+
+.dash-dropdown-content {
+  background-color: #0b1329 !important;
+  border: 1px solid var(--border-cyan) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9) !important;
+  z-index: 1060 !important;
+  color: var(--text-main) !important;
+}
+
+.dash-dropdown-search-container {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+.dash-dropdown-search {
+  background-color: #0f172a !important;
+  color: var(--text-main) !important;
+  border: none !important;
+}
+
+.dash-dropdown-options {
+  background-color: #0b1329 !important;
+}
+
+.dash-dropdown-option,
+.dash-options-list-option {
+  background-color: #0b1329 !important;
+  color: #cbd5e1 !important;
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.dash-dropdown-option:hover,
+.dash-options-list-option:hover,
+.dash-dropdown-option:focus {
+  background-color: rgba(56, 189, 248, 0.2) !important;
+  color: var(--accent-cyan) !important;
+}
+
+.dash-dropdown-option.selected,
+.dash-options-list-option.selected {
+  background-color: rgba(14, 165, 233, 0.28) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Environmental Control Card High Stacking Context (Ensures dropdown floats OVER KPI cards) */
+.hud-controls-card {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+.kpi-container {
+  position: relative;
+  z-index: 1;
+}
+
+.dash-dropdown-content,
+.dash-dropdown-wrapper > div,
+[data-radix-popper-content-wrapper] {
+  z-index: 99999 !important;
+}
+
+/* Modern Dash 4.x / Radix Slider Tooltip Dark Aerospace HUD Theme */
+.dash-slider-tooltip {
+  background-color: #0f172a !important;
+  color: var(--color-yellow-accent) !important;
+  border: 1px solid var(--color-red-primary) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9) !important;
+  font-family: var(--font-family-mono) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  padding: 4px 8px !important;
+}
+
+.dash-slider-tooltip * {
+  color: var(--color-yellow-accent) !important;
+  background-color: transparent !important;
+}
+
+/* Dash 4.x & RC-Slider Tracks and Handles */
+.dash-slider-track,
+.dash-slider-range,
+.rc-slider-track {
+  background-color: var(--color-red-primary) !important;
+}
+
+.dash-slider-thumb,
+.rc-slider-handle {
+  background-color: var(--color-red-primary) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(217, 17, 25, 0.7) !important;
+}
+
+.dash-slider-thumb:hover,
+.dash-slider-thumb:focus,
+.rc-slider-handle:hover,
+.rc-slider-handle:focus {
+  box-shadow: 0 0 16px rgba(217, 17, 25, 0.9) !important;
+}
+
+/* Hide unstyled slider text box overlay completely */
+.dash-slider-container input,
+.dash-slider-wrapper input,
+.dash-range-slider-input,
+.dash-input-container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+}
+
+/* React-Select / Dash Dropdown Dark HUD Theme */
+.Select-menu-outer {
+  background-color: #0b1329 !important;
+  border: 1px solid var(--border-cyan) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85) !important;
+  z-index: 1050 !important;
+}
+
+.Select-menu {
+  max-height: 240px !important;
+}
+
+.Select-option {
+  background-color: #0b1329 !important;
+  color: #cbd5e1 !important;
+  padding: 10px 14px !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.Select-option:hover,
+.Select-option.is-focused {
+  background-color: rgba(217, 17, 25, 0.22) !important;
+  color: #ffffff !important;
+}
+
+.Select-option.is-selected {
+  background-color: rgba(217, 17, 25, 0.45) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.Select-value-label,
+.Select-value {
+  color: var(--text-main) !important;
+}
+
+.Select-input > input {
+  color: var(--text-main) !important;
+}
+
+.Select-placeholder {
+  color: var(--text-muted) !important;
+}
+
+.Select-arrow {
+  border-color: var(--color-red-primary) transparent transparent !important;
+}
+
+/* RC-Slider Dark Aerospace HUD Theme */
+.rc-slider-tooltip,
+.rc-slider-tooltip-content {
+  opacity: 1 !important;
+}
+
+.rc-slider-tooltip-inner {
+  background-color: #0f172a !important;
+  color: var(--color-yellow-accent) !important;
+  border: 1px solid var(--color-red-primary) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85) !important;
+  font-family: var(--font-family-mono) !important;
+  font-size: 0.82rem !important;
+  padding: 4px 10px !important;
+}
+
+.rc-slider-tooltip-arrow {
+  border-top-color: #0f172a !important;
+  border-bottom-color: #0f172a !important;
+}
+
+.rc-slider-mark-text {
+  color: var(--text-muted) !important;
+  font-size: 0.75rem !important;
+  white-space: nowrap !important;
+  margin-top: 4px !important;
+}
+
+.rc-slider-mark-text-active {
+  color: var(--color-yellow-accent) !important;
+}
+
+/* Dropdown Scrollbars Dark Theme */
+.dash-dropdown-content::-webkit-scrollbar,
+.dash-options-list::-webkit-scrollbar,
+.dash-dropdown-options::-webkit-scrollbar {
+  width: 6px !important;
+  background: #0b1329 !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar-track,
+.dash-options-list::-webkit-scrollbar-track,
+.dash-dropdown-options::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6) !important;
+}
+
+.dash-dropdown-content::-webkit-scrollbar-thumb,
+.dash-options-list::-webkit-scrollbar-thumb,
+.dash-dropdown-options::-webkit-scrollbar-thumb {
+  background: var(--color-red-primary) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 4px var(--color-red-primary) !important;
+}
+
+/* Plotly Unified Hover Tooltip Dark Glassmorphism Override */
+.hoverlayer .hovertext text,
+.hoverlayer text,
+.hoverlayer .legendtext,
+.hoverlayer .legendtitletext {
+  fill: #f8fafc !important;
+  color: #f8fafc !important;
+}
+
+.hoverlayer .hovertext rect,
+.hoverlayer .bg,
+.hoverlayer path {
+  fill: #0b1329 !important;
+  stroke: var(--color-red-primary) !important;
+}
+
+/* Flow Direction Toggle Styling */
+.flow-toggle-enabled {
+  transition: opacity 0.2s ease;
+}
+
+.flow-toggle-disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+/* ------------------------------------------------------------------------------
+   6. 4 KPI Risk Metric Cards
+   ------------------------------------------------------------------------------ */
+.kpi-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.kpi-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-family: var(--font-family-mono);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+#kpi-margin {
+  color: var(--color-green-bright);
+}
+
+#kpi-spread {
+  color: var(--color-yellow-accent);
+}
+
+#kpi-hrr {
+  color: var(--color-red-primary);
+}
+
+#kpi-detection {
+  color: var(--color-green-bright);
+}
+
+.kpi-value.kpi-hazard-high {
+  color: var(--color-red-primary);
+  text-shadow: 0 0 12px rgba(217, 17, 25, 0.6);
+}
+
+.kpi-value.kpi-hazard-warn {
+  color: var(--color-yellow-accent);
+  text-shadow: 0 0 12px rgba(251, 220, 8, 0.5);
+}
+
+.kpi-subtext {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------------------
+   7. Literature Explorer (Section 2 Scrollable Container & Cards)
+   ------------------------------------------------------------------------------ */
+.investigation-list-scroll {
+  max-height: 760px;
+  min-height: 680px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-red-primary) rgba(15, 23, 42, 0.6);
+}
+
+.investigation-list-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.investigation-list-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 3px;
+}
+
+.investigation-list-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-red-primary);
+  border-radius: 3px;
+  box-shadow: 0 0 4px var(--color-red-primary);
+}
+
+.investigation-card-item {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(217, 17, 25, 0.22);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.investigation-card-item:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: var(--color-red-primary);
+  transform: translateX(4px);
+  box-shadow: 0 0 12px rgba(217, 17, 25, 0.35);
+}
+
+.investigation-card-item.active-investigation {
+  background: rgba(217, 17, 25, 0.16);
+  border-color: var(--color-red-primary);
+  border-left: 4px solid var(--color-red-primary);
+  box-shadow: var(--border-glow);
+}
+
+.badge-accession {
+  background: rgba(217, 17, 25, 0.25);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: var(--font-family-mono);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 17, 25, 0.45);
+}
+
+.badge-category {
+  background: rgba(251, 220, 8, 0.15);
+  color: var(--color-yellow-accent);
+  font-size: 0.70rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(251, 220, 8, 0.35);
+  margin-left: 6px;
+}
+
+.badge-platform {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-muted);
+  font-size: 0.70rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Tabbed Detail Scientific Summary */
+.scientific-tab-content {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-green);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* Publications Table */
+.doi-table-container {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--border-yellow);
+  border-radius: var(--radius-sm);
+}
+
+.doi-link {
+  color: var(--color-yellow-accent) !important;
+  text-decoration: none;
+  font-family: var(--font-family-mono);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease;
+}
+
+.doi-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+/* Empty State Detail Card Prompt */
+.empty-state-prompt {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-red);
+  border-radius: var(--radius-card);
+  background: rgba(15, 23, 42, 0.4);
+}
+
+/* ------------------------------------------------------------------------------
+   8. AI Copilot Chat Console (Section 3)
+   ------------------------------------------------------------------------------ */
+.chat-console-card {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+
+.chat-feed-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: rgba(11, 15, 25, 0.7);
+  border: 1px solid var(--border-green);
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-green-bright) rgba(15, 23, 42, 0.6);
+}
+
+.chat-feed-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-feed-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 3px;
+}
+
+.chat-feed-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-green-bright);
+  border-radius: 3px;
+  box-shadow: 0 0 4px var(--color-green-bright);
+}
+
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: var(--radius-card);
+  margin-bottom: 14px;
+  max-width: 85%;
+  line-height: 1.55;
+  font-size: 0.93rem;
+  word-break: break-word;
+}
+
+.chat-bubble-user {
+  background: rgba(217, 17, 25, 0.22);
+  border: 1px solid rgba(217, 17, 25, 0.5);
+  color: var(--text-main);
+  margin-left: auto;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-bubble-agent {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid var(--border-green);
+  color: #f1f5f9;
+  margin-right: auto;
+  border-bottom-left-radius: 2px;
+}
+
+.pill-suggestion-btn {
+  background: rgba(251, 220, 8, 0.12) !important;
+  color: var(--color-yellow-accent) !important;
+  border: 1px solid rgba(251, 220, 8, 0.4) !important;
+  border-radius: var(--radius-pill) !important;
+  font-size: 0.80rem !important;
+  font-weight: 500 !important;
+  padding: 4px 12px !important;
+  margin-right: 8px !important;
+  margin-bottom: 8px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer;
+}
+
+.pill-suggestion-btn:hover {
+  background: rgba(251, 220, 8, 0.25) !important;
+  box-shadow: 0 0 10px rgba(251, 220, 8, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Radar Loading Pulse */
+.loading-radar-pulse {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-red-primary);
+  border-radius: 50%;
+  animation: radar-pulse 1.2s infinite ease-out;
+}
+
+@keyframes radar-pulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ------------------------------------------------------------------------------
+   9. Mobile-First Responsive Breakpoints & Accessibility (Touch >= 44px)
+   ------------------------------------------------------------------------------ */
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll explosion on 390px viewports */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw !important;
+  }
+
+  /* GPU-friendly mobile background rendering */
+  .section-dashboard,
+  .section-literature,
+  .section-agent,
+  .section-info {
+    background-attachment: scroll !important;
+    padding: 32px 0 !important;
+  }
+
+  .section-heading-title {
+    font-size: 1.6rem !important;
+  }
+
+  .kpi-value {
+    font-size: 1.7rem !important;
+  }
+
+  /* Enforce touch target size >= 44px */
+  button,
+  .btn,
+  .pill-suggestion-btn,
+  .form-control,
+  .form-select,
+  .rc-slider-handle,
+  .nav-link-hud {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Constrain literature list on narrow screens */
+  .investigation-list-scroll {
+    max-height: 340px !important;
+  }
+
+  .chat-console-card {
+    height: 500px !important;
+  }
+}
+
+/* Enforce explicit rendering dimensions on Plotly graph containers */
+.dash-graph,
+.js-plotly-plot {
+  width: 100% !important;
+  min-height: 340px !important;
+}
+

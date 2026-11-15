@@ -1,0 +1,89 @@
+{
+  "version": 2,
+  "skills": {
+    "browser-testing-with-devtools": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/browser-testing-with-devtools/SKILL.md",
+      "computedHash": "4e76269b455e079e76f29e11fdd80c61a7dd6ef0ab12e26432ea1b782c0a245e"
+    },
+    "design-system": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/design-system/SKILL.md",
+      "computedHash": "9efdc106c73d8d298b5a90d55c56995840a37f754fb9d498d14e6562bdaadc23"
+    },
+    "ecosystem-primer": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/ecosystem-primer/SKILL.md",
+      "computedHash": "91d7f3f91bdc00d725caf00a1c8bb3cee948087ba5010099ee86473271e91b76"
+    },
+    "langgraph-fundamentals": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-fundamentals/SKILL.md",
+      "computedHash": "cefd329526f0611a50db7a1b440fdedbd25d0384928c5b0b6b4621735a39a184"
+    },
+    "langgraph-persistence": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-persistence/SKILL.md",
+      "computedHash": "4b53651a29a0ba20f1cd752d8daf59be2993af1cae330936da1ad4f949081a3a"
+    },
+    "langgraph-python-quickstart": {
+      "source": "langchain-ai/langchain-skills",
+      "sourceType": "github",
+      "skillPath": "config/skills/langgraph-python-quickstart/SKILL.md",
+      "computedHash": "f44505e1dcd3d7402ed0d44c1ef59335ed60532f625eafe20f0194979335e56c"
+    },
+    "plotly": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "skillPath": "cli-tool/components/skills/scientific/plotly/SKILL.md",
+      "computedHash": "5446814b4b7af598cae6d5977def49e5719ed638a44e45b63665675b9dd923ae"
+    },
+    "plotly-dash-expert": {
+      "source": "oiler/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plotly-dash/SKILL.md",
+      "computedHash": "03f6a9fb564cc971f0ed5468ecfd1282b310c8a9d8f36c1fcc6fefa1ef82c90e"
+    },
+    "python-code-style": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/python-development/skills/python-code-style/SKILL.md",
+      "computedHash": "ac7538b1ccb0e4b1cbcccfe883ff3d5e004e138af1b6830359a81a0400abc71c"
+    },
+    "scrollytelling": {
+      "source": "doodledood/claude-code-plugins",
+      "sourceType": "github",
+      "skillPath": "claude-plugins/frontend-design/skills/scrollytelling/SKILL.md",
+      "computedHash": "da4212a26bdf2b66f9fea0a57390dbe92f084047dd4041e9d04f7060dfa7a7f7"
+    },
+    "spec-driven-development": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/spec-driven-development/SKILL.md",
+      "computedHash": "504a76654a492c1ec1fa0e1c59387b8b2969fe2319191cd298c4e3482cf2582a"
+    },
+    "test-driven-development": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "computedHash": "37cc05dea2a455d5d3ff252f14a7323ef378536603cce8cd2c758dc8fac790e6"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "ff6863fc7c1be035b294703b2e7c90b2197548985ca4cb98f58740a7e84dc0cc"
+    },
+    "webapp-testing": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/webapp-testing/SKILL.md",
+      "computedHash": "48cd9a742a59250edec6db89cf081ef5465f365e2133f6d6c5e29c380b754b7d"
+    }
+  }
+}

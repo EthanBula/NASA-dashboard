@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+.pytest_cache/
+.env
+.git/
+.agents/
+.gemini/
+*.png
+!assets/wallpapers/*.png
+!assets/*.png
+tests/
+

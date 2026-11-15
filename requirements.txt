@@ -1,0 +1,20 @@
+# Core Web & Visualization
+dash>=2.16.0
+dash-bootstrap-components>=1.6.0
+plotly>=5.20.0
+pandas>=2.2.0
+numpy>=1.26.0
+
+# AI & Agentic Framework
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+python-dotenv>=1.0.0
+
+# Production Server (Docker / HF Spaces)
+gunicorn>=22.0.0
+
+# Testing & Linting
+pytest>=8.0.0
+ruff>=0.4.0
+
