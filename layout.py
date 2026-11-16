@@ -881,7 +881,7 @@ def build_info_section() -> html.Div:
                                                     className="badge-platform me-2 mb-2",
                                                 ),
                                                 html.Span(
-                                                    "Plotly Dash 4.x",
+                                                    "Plotly Dash",
                                                     className="badge-platform me-2 mb-2",
                                                 ),
                                                 html.Span(
@@ -897,11 +897,15 @@ def build_info_section() -> html.Div:
                                                     className="badge-platform me-2 mb-2",
                                                 ),
                                                 html.Span(
+                                                    "Gunicorn WSGI",
+                                                    className="badge-platform me-2 mb-2",
+                                                ),
+                                                html.Span(
                                                     "Docker",
                                                     className="badge-platform me-2 mb-2",
                                                 ),
                                                 html.Span(
-                                                    "Hugging Face Spaces",
+                                                    "Render.com",
                                                     className="badge-platform mb-2",
                                                 ),
                                             ],
