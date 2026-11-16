@@ -764,20 +764,20 @@ def register_callbacks(app: Any) -> None:
 
         # 1. Clicking an investigation card -> compress list to focus on graph
         if (
-            isinstance(triggered, dict)
+            isinstance(triggered, (dict, type(ctx.triggered_id)))
+            and hasattr(triggered, "get")
             and triggered.get("type") == "investigation-card"
             and any(c for c in card_clicks if c)
         ):
             return {"mode": "compact"}
 
-        # 2. Clicking the toggle button -> toggle mode
-        if triggered == "btn-toggle-list-size":
-            new_mode = "expanded" if curr_mode == "compact" else "compact"
-            return {"mode": new_mode}
-
-        # 3. Interacting with search/filters -> expand list so user can browse
-        if triggered in {"input-search", "dropdown-category", "dropdown-platform"}:
-            return {"mode": "expanded"}
+        # 2. String triggers (toggle button or search/filter inputs)
+        if isinstance(triggered, str):
+            if triggered == "btn-toggle-list-size":
+                new_mode = "expanded" if curr_mode == "compact" else "compact"
+                return {"mode": new_mode}
+            if triggered in {"input-search", "dropdown-category", "dropdown-platform"}:
+                return {"mode": "expanded"}
 
         return current_layout or {"mode": "expanded"}
 
