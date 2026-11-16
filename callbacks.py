@@ -54,19 +54,19 @@ HUD_LAYOUT_BASE: dict[str, Any] = {
     "plot_bgcolor": "rgba(15, 23, 42, 0.6)",
     "autosize": True,
     "font": {
-        "family": "Inter, -apple-system, sans-serif",
+        "family": "'Courier New', Courier, monospace",
         "color": "#f8fafc",
-        "size": 11,
+        "size": 12,
     },
-    "margin": {"l": 48, "r": 20, "t": 28, "b": 32},
+    "margin": {"l": 58, "r": 20, "t": 48, "b": 36},
     "hovermode": "x unified",
     "hoverlabel": {
         "bgcolor": "#0b1329",
-        "bordercolor": "#d91119",
+        "bordercolor": "rgba(255, 255, 255, 0.4)",
         "font": {
-            "family": "Inter, -apple-system, sans-serif",
+            "family": "'Courier New', Courier, monospace",
             "color": "#f8fafc",
-            "size": 11,
+            "size": 12,
         },
     },
     "xaxis": {
@@ -177,8 +177,10 @@ def compute_dashboard_telemetry(
         "layout": {
             **HUD_LAYOUT_BASE,
             "title": {
-                "text": f"G1: Flammability Boundary & LOC ({fuel})",
+                "text": f"G1: Flammability & LOC ({fuel})",
                 "font": {"size": 13, "color": "#fbdc08"},
+                "x": 0.5,
+                "xanchor": "center",
             },
             "xaxis": {
                 **HUD_LAYOUT_BASE["xaxis"],
@@ -186,7 +188,7 @@ def compute_dashboard_telemetry(
             },
             "yaxis": {
                 **HUD_LAYOUT_BASE["yaxis"],
-                "title": {"text": "Oxygen Concentration (% O₂)"},
+                "title": {"text": "O₂ Concentration (%)"},
             },
         },
     }
@@ -217,8 +219,10 @@ def compute_dashboard_telemetry(
         "layout": {
             **HUD_LAYOUT_BASE,
             "title": {
-                "text": f"G2: Flame Spread Rate vs Forced Flow ({fuel})",
+                "text": f"G2: Flame Spread vs Flow ({fuel})",
                 "font": {"size": 13, "color": "#fbdc08"},
+                "x": 0.5,
+                "xanchor": "center",
             },
             "xaxis": {
                 **HUD_LAYOUT_BASE["xaxis"],
@@ -277,13 +281,15 @@ def compute_dashboard_telemetry(
         "layout": {
             **HUD_LAYOUT_BASE,
             "title": {
-                "text": f"G3: Spacecraft Cabin Fire Dynamics ({fuel})",
+                "text": f"G3: Cabin Fire Dynamics ({fuel})",
                 "font": {"size": 13, "color": "#fbdc08"},
+                "x": 0.5,
+                "xanchor": "center",
             },
             "xaxis": {**HUD_LAYOUT_BASE["xaxis"], "title": {"text": "Flight Time (s)"}},
             "yaxis": {
                 **HUD_LAYOUT_BASE["yaxis"],
-                "title": {"text": "Heat Release Rate (kW)"},
+                "title": {"text": "Heat Release (kW)"},
             },
             "yaxis2": {
                 "title": {"text": "CO (ppm)", "font": {"color": "#0cb64d"}},
@@ -322,6 +328,8 @@ def compute_dashboard_telemetry(
             "title": {
                 "text": f"G4: Smoke Aerosol Spectrum ({fuel})",
                 "font": {"size": 13, "color": "#fbdc08"},
+                "x": 0.5,
+                "xanchor": "center",
             },
             "xaxis": {
                 **HUD_LAYOUT_BASE["xaxis"],
@@ -330,7 +338,7 @@ def compute_dashboard_telemetry(
             },
             "yaxis": {
                 **HUD_LAYOUT_BASE["yaxis"],
-                "title": {"text": "Concentration dN/dlog(d_p) (#/cm³)"},
+                "title": {"text": "Aerosol Conc. (#/cm³)"},
             },
         },
     }
