@@ -42,7 +42,7 @@ def apply_hud_theme(
             "color": "#f8fafc",
             "size": 11,
         },
-        margin={"l": 45, "r": 20, "t": 35, "b": 38},
+        margin={"l": 48, "r": 20, "t": 32, "b": 34},
         autosize=True,
         hovermode="x unified",
         hoverlabel={
@@ -137,7 +137,7 @@ def chart_psi_68_flex_2() -> go.Figure:
             x=d0_range,
             y=k_diluted,
             mode="lines+markers",
-            name="CO₂ Diluted Ambient",
+            name="CO₂ Diluted",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -196,7 +196,7 @@ def chart_psi_10_acme_flame_design() -> go.Figure:
             y=fv,
             mode="lines",
             fill="tozeroy",
-            name="Soot Volume Fraction",
+            name="Soot Fraction",
             line={"color": "#0cb64d", "width": 2.5},
             fillcolor="rgba(6, 136, 57, 0.2)",
         )
@@ -221,7 +221,7 @@ def chart_psi_22_acme_efield() -> go.Figure:
             x=voltage,
             y=liftoff,
             mode="lines+markers",
-            name="Ionic Wind Response",
+            name="Ionic Response",
             line={"color": "#fbdc08", "width": 2},
             marker={"size": 6, "color": "#fbdc08"},
         )
@@ -246,7 +246,7 @@ def chart_psi_21_acme_cld_flame() -> go.Figure:
             x=v_fuel,
             y=l_flame_iss,
             mode="lines",
-            name="Microgravity (ISS CIR)",
+            name="Microgravity μg",
             line={"color": "#fbdc08", "width": 2.5},
         )
     )
@@ -255,7 +255,7 @@ def chart_psi_21_acme_cld_flame() -> go.Figure:
             x=v_fuel,
             y=l_flame_1g,
             mode="lines",
-            name="Normal Gravity 1-g (Buoyant)",
+            name="Normal 1-g",
             line={"color": "#94a3b8", "dash": "dot"},
         )
     )
@@ -303,7 +303,7 @@ def chart_psi_20_acme_bre() -> go.Figure:
             x=m_dot,
             y=q_feedback,
             mode="lines",
-            name="Net Radiative + Convective Feedback",
+            name="Net Heat Flux",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -326,7 +326,7 @@ def chart_psi_102_same() -> go.Figure:
             x=dp_pmma,
             y=dist_pmma,
             mode="lines",
-            name="PMMA Overheat Smoke",
+            name="PMMA Smoke",
             line={"color": "#0cb64d", "width": 2},
         )
     )
@@ -335,7 +335,7 @@ def chart_psi_102_same() -> go.Figure:
             x=dp_tef,
             y=dist_tef,
             mode="lines",
-            name="Teflon Insulation Smoke",
+            name="Teflon Smoke",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -359,7 +359,7 @@ def chart_psi_142_cool_flame() -> go.Figure:
             x=strain,
             y=t_cool,
             mode="lines",
-            name="Low-T Flame Extinction",
+            name="Cool Extinction",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -382,7 +382,7 @@ def chart_psi_26_bass() -> go.Figure:
             x=u_vals,
             y=loc_vals,
             mode="lines",
-            name="PMMA Flammability Boundary (LOC)",
+            name="LOC Limit",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -414,7 +414,7 @@ def chart_psi_117_cfd() -> go.Figure:
             x=da,
             y=freq,
             mode="lines",
-            name="Thermo-Convective Instability",
+            name="Instability Limit",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -485,7 +485,7 @@ def chart_psi_99_saffire_ii() -> go.Figure:
             x=p_psia,
             y=loc_sibal,
             mode="lines",
-            name="SIBAL Fabric Flammability Boundary",
+            name="SIBAL Limit",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -506,7 +506,7 @@ def chart_psi_98_saffire_i() -> go.Figure:
             x=ts["time_s"],
             y=ts["hrr_kw"],
             mode="lines",
-            name="Heat Release Rate (kW)",
+            name="HRR (kW)",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -515,7 +515,7 @@ def chart_psi_98_saffire_i() -> go.Figure:
             x=ts["time_s"],
             y=ts["co_ppm"],
             mode="lines",
-            name="CO Concentration (ppm)",
+            name="CO (ppm)",
             yaxis="y2",
             line={"color": "#0cb64d", "width": 1.5, "dash": "dash"},
         )
@@ -548,7 +548,7 @@ def chart_psi_101_same_r() -> go.Figure:
             x=time_min,
             y=count_t,
             mode="lines",
-            name="Aerosol Count N(t)",
+            name="Aerosol N(t)",
             line={"color": "#0cb64d", "width": 2},
         )
     )
@@ -572,7 +572,7 @@ def chart_psi_62_fgm() -> go.Figure:
             x=x_pos,
             y=temp_k,
             mode="lines",
-            name="Flamelet Model Prediction",
+            name="Flamelet Model",
             line={"color": "#d91119", "width": 2.5},
         )
     )
@@ -595,7 +595,7 @@ def chart_psi_100_saffire_iii() -> go.Figure:
             x=u_vals,
             y=v_spread,
             mode="lines+markers",
-            name="Thick PMMA Slab (Cygnus)",
+            name="Thick PMMA",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -619,7 +619,7 @@ def chart_psi_47_daft() -> go.Figure:
             x=angle,
             y=scatter_smoke,
             mode="lines",
-            name="Combustion Smoke (Sub-micron)",
+            name="Smoke (<1 μm)",
             line={"color": "#0cb64d", "width": 2},
         )
     )
@@ -628,7 +628,7 @@ def chart_psi_47_daft() -> go.Figure:
             x=angle,
             y=scatter_dust,
             mode="lines",
-            name="Cabin Dust (Super-micron)",
+            name="Dust (>1 μm)",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -674,7 +674,7 @@ def chart_psi_60_spice_reanalysis() -> go.Figure:
             x=time_pts,
             y=yield_soot * 100,
             mode="lines",
-            name="Predicted Soot Yield",
+            name="Soot Yield",
             line={"color": "#0cb64d", "width": 2},
         )
     )
@@ -697,7 +697,7 @@ def chart_psi_106_slice() -> go.Figure:
             x=re_nozzle,
             y=v_liftoff,
             mode="lines+markers",
-            name="Methane Diffusion Jet",
+            name="Methane Jet",
             line={"color": "#fbdc08", "width": 2},
         )
     )
@@ -721,7 +721,7 @@ def chart_psi_115_same_modeling() -> go.Figure:
             x=time_s,
             y=cfd_sim,
             mode="lines",
-            name="CFD Coagulation Model",
+            name="CFD Model",
             line={"color": "#0cb64d", "width": 2},
         )
     )
@@ -730,7 +730,7 @@ def chart_psi_115_same_modeling() -> go.Figure:
             x=time_s,
             y=flight_sensor,
             mode="markers",
-            name="SAME Ionization Sensor Data",
+            name="Flight Sensor",
             marker={"size": 5, "color": "#fbdc08"},
         )
     )

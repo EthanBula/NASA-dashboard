@@ -1004,8 +1004,27 @@ body {
     font-size: 1.6rem !important;
   }
 
+  /* 2x2 KPI Risk Metric Cards on mobile */
+  .kpi-container {
+    padding: 10px 12px !important;
+    min-height: 72px !important;
+  }
+
+  .kpi-header {
+    font-size: 0.65rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 4px !important;
+    letter-spacing: 0.03em !important;
+  }
+
   .kpi-value {
-    font-size: 1.7rem !important;
+    font-size: 1.4rem !important;
+    line-height: 1.05 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .kpi-subtext {
+    font-size: 0.70rem !important;
   }
 
   /* Compact padding for cards on mobile to avoid giant vertical blocks */
@@ -1049,9 +1068,32 @@ body {
     justify-content: center !important;
   }
 
-  /* Expanded height and compact card styling on mobile (displays 6-8 items simultaneously) */
+  /* Accordion collapse for literature list on mobile */
   .investigation-list-scroll {
     max-height: 500px !important;
+    transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out !important;
+  }
+
+  .investigation-list-compact {
+    max-height: 0 !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    border: none !important;
+  }
+
+  .hud-col-20.hud-lit-list .hud-card {
+    padding: 10px 14px !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .hud-col-20.hud-lit-list .hud-card .d-flex.align-items-center.mb-3 {
+    margin-bottom: 0 !important;
   }
 
   .investigation-card-item {

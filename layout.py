@@ -98,7 +98,7 @@ def _build_kpi_card(
             ],
             className=card_class,
         ),
-        xs=12,
+        xs=6,
         sm=6,
         md=3,
         className="mb-3",

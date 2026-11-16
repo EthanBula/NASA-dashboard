@@ -169,7 +169,8 @@ def compute_dashboard_telemetry(
                 "x": [u_inf_cm_s],
                 "y": [o2_pct],
                 "mode": "markers",
-                "name": f"Operating Point ({pt_status})",
+                "name": "Operating Pt",
+                "hovertemplate": f"Operating Pt: %{{x:.1f}} cm/s, %{{y:.1f}}% O₂ ({pt_status})<extra></extra>",
                 "marker": {"size": 11, "color": pt_color},
             },
         ],
@@ -268,7 +269,7 @@ def compute_dashboard_telemetry(
                 "x": SAFFIRE_TIMESERIES["time_s"],
                 "y": co_vals,
                 "mode": "lines",
-                "name": "CO Concentration (ppm)",
+                "name": "CO (ppm)",
                 "yaxis": "y2",
                 "line": {"color": "#0cb64d", "width": 1.5, "dash": "dash"},
             },
@@ -319,7 +320,7 @@ def compute_dashboard_telemetry(
         "layout": {
             **HUD_LAYOUT_BASE,
             "title": {
-                "text": f"G4: Smoke Aerosol Size Distribution ({mat})",
+                "text": f"G4: Smoke Aerosol Spectrum ({fuel})",
                 "font": {"size": 13, "color": "#fbdc08"},
             },
             "xaxis": {
