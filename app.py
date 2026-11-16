@@ -19,8 +19,14 @@ app = dash.Dash(
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
 )
 
-# Underlying Flask WSGI server instance for Hugging Face Spaces & Gunicorn
+# Underlying Flask WSGI server instance for cloud hosting & Gunicorn
 server = app.server
+
+
+@server.route("/health")
+def health_check():
+    """Lightweight health check endpoint for uptime monitors and keep-alive pings."""
+    return "OK", 200
 
 # Application metadata & layout
 app.title = "NASA PSI Microgravity Flammability & Fire Safety Dashboard"
