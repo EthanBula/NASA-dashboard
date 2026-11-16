@@ -36,52 +36,40 @@ def build_navbar() -> dbc.Navbar:
     """Build the sticky top navigation bar with anchors to all 4 sections."""
     return dbc.Navbar(
         dbc.Container(
-            [
-                html.Div(
-                    [
-                        html.Span("🚀", className="me-2", style={"fontSize": "1.3rem"}),
-                        html.Span(
-                            "NASA PSI",
-                            className="navbar-brand-title",
-                        ),
-                        html.Span("FLIGHT HUD", className="navbar-brand-badge"),
-                    ],
-                    className="d-flex align-items-center",
-                ),
-                dbc.Nav(
-                    [
-                        dbc.NavLink(
-                            "1. Dashboard",
-                            href="#dashboard",
-                            className="nav-link-hud",
-                            external_link=True,
-                        ),
-                        dbc.NavLink(
-                            "2. Literature",
-                            href="#literature",
-                            className="nav-link-hud",
-                            external_link=True,
-                        ),
-                        dbc.NavLink(
-                            "3. AI Copilot",
-                            href="#agent",
-                            className="nav-link-hud",
-                            external_link=True,
-                        ),
-                        dbc.NavLink(
-                            "4. Project Info",
-                            href="#info",
-                            className="nav-link-hud",
-                            external_link=True,
-                        ),
-                    ],
-                    className="ms-auto d-flex flex-row",
-                    navbar=True,
-                ),
-            ],
+            dbc.Nav(
+                [
+                    dbc.NavLink(
+                        "1. Dashboard",
+                        href="#dashboard",
+                        className="nav-link-hud",
+                        external_link=True,
+                    ),
+                    dbc.NavLink(
+                        "2. Literature",
+                        href="#literature",
+                        className="nav-link-hud",
+                        external_link=True,
+                    ),
+                    dbc.NavLink(
+                        "3. AI Copilot",
+                        href="#agent",
+                        className="nav-link-hud",
+                        external_link=True,
+                    ),
+                    dbc.NavLink(
+                        "4. Project Info",
+                        href="#info",
+                        className="nav-link-hud",
+                        external_link=True,
+                    ),
+                ],
+                className="nav-hud-center d-flex flex-row justify-content-center align-items-center w-100",
+                navbar=True,
+            ),
             fluid=True,
+            className="d-flex justify-content-center px-1",
         ),
-        className="sticky-navbar px-3",
+        className="sticky-navbar px-2",
         dark=True,
     )
 
@@ -357,7 +345,7 @@ def build_dashboard_section() -> html.Div:
                                             "responsive": True,
                                             "displayModeBar": False,
                                         },
-                                        style={"height": "340px"},
+                                        className="hud-plot-responsive",
                                     ),
                                     className="hud-card hud-card-red",
                                 ),
@@ -373,7 +361,7 @@ def build_dashboard_section() -> html.Div:
                                             "responsive": True,
                                             "displayModeBar": False,
                                         },
-                                        style={"height": "340px"},
+                                        className="hud-plot-responsive",
                                     ),
                                     className="hud-card hud-card-yellow",
                                 ),
@@ -393,7 +381,7 @@ def build_dashboard_section() -> html.Div:
                                             "responsive": True,
                                             "displayModeBar": False,
                                         },
-                                        style={"height": "340px"},
+                                        className="hud-plot-responsive",
                                     ),
                                     className="hud-card hud-card-red",
                                 ),
@@ -409,7 +397,7 @@ def build_dashboard_section() -> html.Div:
                                             "responsive": True,
                                             "displayModeBar": False,
                                         },
-                                        style={"height": "340px"},
+                                        className="hud-plot-responsive",
                                     ),
                                     className="hud-card hud-card-green",
                                 ),
@@ -472,10 +460,10 @@ def build_literature_section(
                             ),
                         ]
                     ),
-                    # Row 1: Search & Filters (Col 1, Width 20%) + Scientific Detail Card (Col 2, Width 80%)
+                    # Responsive Literature Grid: 2x2 on Desktop, Filters -> List -> Detail -> Chart on Mobile
                     dbc.Row(
                         [
-                            # Top-Left: Filters (Yellow Border, 20% width)
+                            # 1. Search & Filters (Top-Left on Desktop, 1st on Mobile)
                             html.Div(
                                 html.Div(
                                     [
@@ -549,9 +537,9 @@ def build_literature_section(
                                     ],
                                     className="hud-card hud-card-yellow hud-filters-card h-100 mb-0",
                                 ),
-                                className="col-12 hud-col-20 mb-3",
+                                className="col-12 hud-col-20 hud-lit-filters mb-3",
                             ),
-                            # Top-Right: Scientific Detail Card (Green Border, 80% width)
+                            # 2. Scientific Detail Card (Top-Right on Desktop, 3rd on Mobile)
                             html.Div(
                                 html.Div(
                                     id="container-investigation-detail",
@@ -578,15 +566,9 @@ def build_literature_section(
                                     ],
                                     className="hud-card hud-card-green h-100 mb-0",
                                 ),
-                                className="col-12 hud-col-80 mb-3",
+                                className="col-12 hud-col-80 hud-lit-detail mb-3",
                             ),
-                        ],
-                        className="mb-3 hud-literature-row-top",
-                    ),
-                    # Row 2: Flight Investigations List (Red Border) + Dedicated Chart (Yellow Border)
-                    dbc.Row(
-                        [
-                            # Bottom-Left: Flight Investigations List (Dynamic Width: 50% <-> 20%)
+                            # 3. Flight Investigations List (Bottom-Left on Desktop, 2nd on Mobile)
                             html.Div(
                                 html.Div(
                                     [
@@ -623,9 +605,9 @@ def build_literature_section(
                                     className="hud-card hud-card-red h-100 mb-0",
                                 ),
                                 id="col-investigations-list",
-                                className="col-12 hud-col-50 mb-3 layout-col-transition",
+                                className="col-12 hud-col-50 hud-lit-list mb-3 layout-col-transition",
                             ),
-                            # Bottom-Right: Dedicated Chart (Dynamic Width: 50% <-> 80%)
+                            # 4. Dedicated Chart (Bottom-Right on Desktop, 4th on Mobile)
                             html.Div(
                                 html.Div(
                                     [
@@ -649,16 +631,16 @@ def build_literature_section(
                                                 "responsive": True,
                                                 "displayModeBar": False,
                                             },
-                                            style={"height": "430px"},
+                                            className="hud-plot-literature",
                                         ),
                                     ],
                                     className="hud-card hud-card-yellow h-100 mb-0",
                                 ),
                                 id="col-investigations-chart",
-                                className="col-12 hud-col-50 mb-3 layout-col-transition",
+                                className="col-12 hud-col-50 hud-lit-chart mb-3 layout-col-transition",
                             ),
                         ],
-                        className="hud-literature-row-bottom",
+                        className="mb-3 hud-literature-grid",
                     ),
                 ],
                 fluid=True,
@@ -718,12 +700,6 @@ def build_agent_section() -> html.Div:
                                                     "Synthesize active investigation",
                                                     id="pill-2",
                                                     size="sm",
-                                                    className="pill-suggestion-btn me-2 mb-2",
-                                                ),
-                                                dbc.Button(
-                                                    "Why does CO surge in microgravity?",
-                                                    id="pill-3",
-                                                    size="sm",
                                                     className="pill-suggestion-btn mb-2",
                                                 ),
                                             ],
@@ -782,8 +758,7 @@ def build_agent_section() -> html.Div:
                                     className="hud-card chat-console-card hud-card-green",
                                 ),
                                 xs=12,
-                                lg=10,
-                                className="mx-auto",
+                                lg=12,
                             )
                         ]
                     ),

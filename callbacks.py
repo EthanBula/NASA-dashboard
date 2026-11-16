@@ -52,13 +52,13 @@ SOLID_FUELS = {"PMMA", "SIBAL_Fabric", "Nomex", "Silicone"}
 HUD_LAYOUT_BASE: dict[str, Any] = {
     "paper_bgcolor": "rgba(0,0,0,0)",
     "plot_bgcolor": "rgba(15, 23, 42, 0.6)",
-    "height": 340,
+    "autosize": True,
     "font": {
         "family": "Inter, -apple-system, sans-serif",
         "color": "#f8fafc",
         "size": 11,
     },
-    "margin": {"l": 65, "r": 65, "t": 48, "b": 48},
+    "margin": {"l": 45, "r": 35, "t": 35, "b": 38},
     "hovermode": "x unified",
     "hoverlabel": {
         "bgcolor": "#0b1329",
@@ -794,14 +794,14 @@ def register_callbacks(app: Any) -> None:
     ) -> tuple[str, str, str, str, str]:
         mode = (layout_state or {}).get("mode", "expanded")
         if mode == "compact":
-            col_list_class = "col-12 hud-col-20 mb-3 layout-col-transition"
-            col_chart_class = "col-12 hud-col-80 mb-3 layout-col-transition"
+            col_list_class = "col-12 hud-col-20 hud-lit-list mb-3 layout-col-transition"
+            col_chart_class = "col-12 hud-col-80 hud-lit-chart mb-3 layout-col-transition"
             list_scroll_class = "investigation-list-scroll investigation-list-compact"
             btn_text = "Expand Catalog"
             btn_icon = "⇱"
         else:
-            col_list_class = "col-12 hud-col-50 mb-3 layout-col-transition"
-            col_chart_class = "col-12 hud-col-50 mb-3 layout-col-transition"
+            col_list_class = "col-12 hud-col-50 hud-lit-list mb-3 layout-col-transition"
+            col_chart_class = "col-12 hud-col-50 hud-lit-chart mb-3 layout-col-transition"
             list_scroll_class = "investigation-list-scroll"
             btn_text = "Focus Chart"
             btn_icon = "⇲"
@@ -832,7 +832,6 @@ def register_callbacks(app: Any) -> None:
         Input("chat-input", "n_submit"),
         Input("pill-1", "n_clicks"),
         Input("pill-2", "n_clicks"),
-        Input("pill-3", "n_clicks"),
         State("chat-input", "value"),
         State("store-scenario", "data"),
         State("store-selected-investigation", "data"),
@@ -844,7 +843,6 @@ def register_callbacks(app: Any) -> None:
         _submit_n: int | None,
         _pill1_clicks: int | None,
         _pill2_clicks: int | None,
-        _pill3_clicks: int | None,
         chat_val: str | None,
         scenario_data: dict[str, Any] | None,
         investigation_data: dict[str, Any] | None,
@@ -861,11 +859,6 @@ def register_callbacks(app: Any) -> None:
             prompt = (
                 "Synthesize the objectives, hypothesis, and key findings of the currently "
                 "selected PSI flight investigation."
-            )
-        elif trigger == "pill-3":
-            prompt = (
-                "Why does carbon monoxide (CO) surge during microgravity smoldering and flame spread "
-                "compared to Earth gravity?"
             )
         else:
             prompt = (chat_val or "").strip()

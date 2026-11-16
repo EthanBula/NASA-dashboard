@@ -42,8 +42,8 @@ def apply_hud_theme(
             "color": "#f8fafc",
             "size": 11,
         },
-        margin={"l": 50, "r": 20, "t": 48, "b": 48},
-        height=380,
+        margin={"l": 45, "r": 20, "t": 35, "b": 38},
+        autosize=True,
         hovermode="x unified",
         hoverlabel={
             "bgcolor": "#0b1329",
