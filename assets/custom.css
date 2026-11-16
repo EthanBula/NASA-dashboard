@@ -104,8 +104,11 @@ body {
    3. Sticky Top Navbar & Section Navigation
    ------------------------------------------------------------------------------ */
 .sticky-navbar {
-  position: sticky;
+  position: fixed !important;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 1050;
   height: var(--navbar-height);
   background: rgba(11, 15, 25, 0.94);
@@ -169,7 +172,7 @@ body {
   background: linear-gradient(180deg, rgba(11, 15, 25, 0.86), rgba(11, 15, 25, 0.94)),
               url('/assets/wallpapers/wallpaper1.png') center/cover no-repeat fixed;
   min-height: 100vh;
-  padding: 48px 0;
+  padding: calc(var(--navbar-height) + 24px) 0 48px 0;
   position: relative;
   border-bottom: 1px solid rgba(217, 17, 25, 0.2);
 }
@@ -993,12 +996,22 @@ body {
     padding: 32px 0 !important;
   }
 
+  .section-dashboard {
+    padding-top: calc(52px + 24px) !important;
+  }
+
   .section-heading-title {
     font-size: 1.6rem !important;
   }
 
   .kpi-value {
     font-size: 1.7rem !important;
+  }
+
+  /* Compact padding for cards on mobile to avoid giant vertical blocks */
+  .section-dashboard .hud-card,
+  .hud-literature-grid .hud-card {
+    padding: 10px 14px !important;
   }
 
   /* Compact single-row navbar on mobile */
@@ -1036,9 +1049,61 @@ body {
     justify-content: center !important;
   }
 
-  /* Constrain literature list on narrow screens */
+  /* Expanded height and compact card styling on mobile (displays 6-8 items simultaneously) */
   .investigation-list-scroll {
-    max-height: 320px !important;
+    max-height: 500px !important;
+  }
+
+  .investigation-card-item {
+    padding: 6px 10px !important;
+    margin-bottom: 5px !important;
+  }
+
+  .investigation-card-item .investigation-card-header {
+    margin-bottom: 2px !important;
+  }
+
+  .investigation-card-item .badge-accession {
+    font-size: 0.75rem !important;
+    padding: 1px 6px !important;
+  }
+
+  .investigation-card-item .badge-category {
+    font-size: 0.70rem !important;
+    padding: 1px 6px !important;
+  }
+
+  .investigation-card-item .investigation-title {
+    font-size: 0.78rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    white-space: normal !important;
+  }
+
+  .investigation-card-item .investigation-meta {
+    font-size: 0.70rem !important;
+    margin-top: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .investigation-card-item .investigation-meta span.text-muted {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 65% !important;
+  }
+
+  .investigation-card-item .investigation-meta .badge-platform {
+    font-size: 0.65rem !important;
+    padding: 1px 5px !important;
   }
 
   /* Expanded Chatbot on mobile */
@@ -1054,18 +1119,18 @@ body {
   .hud-plot-responsive,
   .hud-plot-responsive .dash-graph,
   .hud-plot-responsive .js-plotly-plot {
-    height: 230px !important;
-    min-height: 230px !important;
-    max-height: 240px !important;
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 190px !important;
     width: 100% !important;
   }
 
   .hud-plot-literature,
   .hud-plot-literature .dash-graph,
   .hud-plot-literature .js-plotly-plot {
-    height: 250px !important;
-    min-height: 250px !important;
-    max-height: 260px !important;
+    height: 220px !important;
+    min-height: 210px !important;
+    max-height: 230px !important;
     width: 100% !important;
   }
 }

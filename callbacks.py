@@ -58,7 +58,7 @@ HUD_LAYOUT_BASE: dict[str, Any] = {
         "color": "#f8fafc",
         "size": 11,
     },
-    "margin": {"l": 45, "r": 35, "t": 35, "b": 38},
+    "margin": {"l": 48, "r": 20, "t": 28, "b": 32},
     "hovermode": "x unified",
     "hoverlabel": {
         "bgcolor": "#0b1329",
